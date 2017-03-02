@@ -15,7 +15,7 @@ MY_FILTER_BRANCH=v6
 # --------------------------------------------------------------------------------------------------------
 # Check everything has been set-up
 # --------------------------------------------------------------------------------------------------------
-if [ ! $PANDORA_SAMPLES_IS_SETUP ]; then 
+if [ -z ${PANDORA_SAMPLES_IS_SETUP:+x} ]; then 
   echo "Error: Before you can run this script you must first set-up"
   echo "    source setup/setup.sh"
 
@@ -59,6 +59,7 @@ mrb i
 mrbslp
 
 cd $WORKING_DIR
+export PANDORA_SAMPLES_IS_INSTALLED=0
 
 
 

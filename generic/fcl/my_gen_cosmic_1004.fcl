@@ -1,0 +1,7 @@
+#include "prodgenie_bnb_nu_cosmic_uboone.fcl"
+
+physics.producers.generator.EventGeneratorList: "CCRES"
+physics.producers.generator.FluxSearchPaths:    "/pnfs/uboone/persistent/uboonebeam/bnb_gsimple/bnb_gsimple_fluxes_02.28.2014_470/"
+physics.producers.generator.FluxFiles:         ["gsimple_microboone-470-onaxis_mc_nu_dummy_ntrd_*.root"]
+physics.producers.generator.FluxCopyMethod:     "IFDH"
+physics.producers.generator.MaxFluxFileMB:       100

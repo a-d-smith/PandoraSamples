@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+
+<!-- Production Project -->
+
+<!DOCTYPE project [
+<!ENTITY release "LARSOFTVERSION">
+<!ENTITY file_type "mc">
+<!ENTITY run_type "physics">
+<!ENTITY name "PROJECT_USECOSMICS_NUANCE">
+<!ENTITY user "USERNAME">
+]>
+
+<job>
+
+<project name="&name;">
+
+  <!-- Group -->
+  <group>uboone</group>
+
+  <!-- Project size -->
+  <!--numevents></numevents> 
+  <maxfilesperjob>1</maxfilesperjob-->
+
+  <!-- Operating System -->
+  <os>SL6</os>
+
+  <!-- Batch resources -->
+  <resource>DEDICATED,OPPORTUNISTIC</resource>
+
+  <!-- Larsoft information -->
+  <larsoft>
+    <tag>&release;</tag>
+    <qual>LARSOFTQUAL</qual>
+    <?LOCAL?>
+  </larsoft>
+
+  <!-- Project stages -->
+
+  <stage name="gen">
+    <fcl>GENFCL</fcl>
+    <outdir>/pnfs/uboone/scratch/users/USERNAME/&name;</outdir>
+    <logdir>/pnfs/uboone/scratch/users/USERNAME/&name;</logdir>
+    <workdir>/pnfs/uboone/scratch/users/USERNAME/work/&name;</workdir>
+    <?GENEVENTS?>
+    <?GENJOBS?>
+    <datatier>generated</datatier>
+    <defname>&name;_gen</defname>
+  </stage>
+
+  <stage name="filter">
+    <fcl>FILTERFCL</fcl>
+    <outdir>/pnfs/uboone/scratch/users/USERNAME/&name;</outdir>
+    <logdir>/pnfs/uboone/scratch/users/USERNAME/&name;</logdir>
+    <workdir>/pnfs/uboone/scratch/users/USERNAME/work/&name;</workdir>
+    <?FILTEREVENTS?>
+    <?FILTERJOBS?>
+    <datatier>generated</datatier>
+    <defname>&name;_gen</defname>
+  </stage>
+
+  <stage name="g4">
+    <fcl>standard_g4_uboone.fcl</fcl>
+    <outdir>/pnfs/uboone/scratch/users/USERNAME/&name;/g4</outdir>
+    <logdir>/pnfs/uboone/scratch/users/USERNAME/&name;/g4</logdir>
+    <workdir>/pnfs/uboone/scratch/users/USERNAME/work/&name;/g4</workdir>
+    <?G4EVENTS?>
+    <?G4JOBS?>
+    <datatier>simulated</datatier>
+    <defname>&name;_g4</defname>
+  </stage>
+
+  <stage name="detsim">
+    <fcl>standard_detsim_uboone.fcl</fcl>
+    <outdir>/pnfs/uboone/scratch/users/USERNAME/&name;/detsim</outdir>
+    <logdir>/pnfs/uboone/scratch/users/USERNAME/&name;/detsim</logdir>
+    <workdir>/pnfs/uboone/scratch/users/USERNAME/work/&name;/detsim</workdir>
+    <?DETSIMEVENTS?>
+    <?DETSIMJOBS?>
+    <datatier>detector-simulated</datatier>
+    <defname>&name;_detsim</defname>
+  </stage>
+
+  <stage name="pndr">
+    <fcl>PNDRFCL</fcl>
+    <outdir>/pnfs/uboone/scratch/users/USERNAME/&name;/pndr</outdir>
+    <logdir>/pnfs/uboone/scratch/users/USERNAME/&name;/pndr</logdir>
+    <workdir>/pnfs/uboone/scratch/users/USERNAME/work/&name;/pndr</workdir>
+    <?PNDREVENTS?> 
+    <?PNDRJOBS?> 
+    <datatier>detector-simulated</datatier>
+    <defname>&name;_pndr</defname>
+  </stage>
+
+  <!-- file type -->
+  <filetype>&file_type;</filetype>
+
+  <!-- run type -->
+  <runtype>&run_type;</runtype>
+
+</project>
+
+</job>

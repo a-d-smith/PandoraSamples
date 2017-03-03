@@ -1,0 +1,21 @@
+BEGIN_PROLOG
+
+myfilter:
+{ 
+    module_type:                "MyFilter"
+
+    # InteractionType: NUANCE
+    DetectorHalfLengthX: 256.35
+    DetectorHalfLengthY: 233.
+    DetectorHalfLengthZ: 1036.8
+    CoordinateOffsetX: 0.
+    CoordinateOffsetY: 116.5
+    CoordinateOffsetZ: 0.
+    SelectedBorderX: 10.
+    SelectedBorderY: 20.
+    SelectedBorderZ: 10.    
+
+}
+
+END_PROLOG
+

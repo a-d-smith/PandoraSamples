@@ -31,16 +31,16 @@
   <larsoft>
     <tag>&release;</tag>
     <qual>LARSOFTQUAL</qual>
-    <?LOCAL?>
+    <local>WORKINGDIR/generic/local.tar</local>
   </larsoft>
 
   <!-- Project stages -->
 
   <stage name="gen">
     <fcl>GENFCL</fcl>
-    <outdir>/pnfs/uboone/scratch/users/USERNAME/&name;</outdir>
-    <logdir>/pnfs/uboone/scratch/users/USERNAME/&name;</logdir>
-    <workdir>/pnfs/uboone/scratch/users/USERNAME/work/&name;</workdir>
+    <outdir>/pnfs/uboone/scratch/users/USERNAME/&name;/gen</outdir>
+    <logdir>/pnfs/uboone/scratch/users/USERNAME/&name;/gen</logdir>
+    <workdir>/pnfs/uboone/scratch/users/USERNAME/work/&name;/gen</workdir>
     <?GENEVENTS?>
     <?GENJOBS?>
     <datatier>generated</datatier>
@@ -49,9 +49,9 @@
 
   <stage name="filter">
     <fcl>FILTERFCL</fcl>
-    <outdir>/pnfs/uboone/scratch/users/USERNAME/&name;</outdir>
-    <logdir>/pnfs/uboone/scratch/users/USERNAME/&name;</logdir>
-    <workdir>/pnfs/uboone/scratch/users/USERNAME/work/&name;</workdir>
+    <outdir>/pnfs/uboone/scratch/users/USERNAME/&name;/filter</outdir>
+    <logdir>/pnfs/uboone/scratch/users/USERNAME/&name;/filter</logdir>
+    <workdir>/pnfs/uboone/scratch/users/USERNAME/work/&name;/filter</workdir>
     <?FILTEREVENTS?>
     <?FILTERJOBS?>
     <datatier>generated</datatier>
@@ -63,6 +63,7 @@
     <outdir>/pnfs/uboone/scratch/users/USERNAME/&name;/g4</outdir>
     <logdir>/pnfs/uboone/scratch/users/USERNAME/&name;/g4</logdir>
     <workdir>/pnfs/uboone/scratch/users/USERNAME/work/&name;/g4</workdir>
+    <lines>request_memory=4096</lines>
     <?G4EVENTS?>
     <?G4JOBS?>
     <datatier>simulated</datatier>
@@ -74,6 +75,7 @@
     <outdir>/pnfs/uboone/scratch/users/USERNAME/&name;/detsim</outdir>
     <logdir>/pnfs/uboone/scratch/users/USERNAME/&name;/detsim</logdir>
     <workdir>/pnfs/uboone/scratch/users/USERNAME/work/&name;/detsim</workdir>
+    <lines>request_memory=4096</lines>
     <?DETSIMEVENTS?>
     <?DETSIMJOBS?>
     <datatier>detector-simulated</datatier>
@@ -85,6 +87,7 @@
     <outdir>/pnfs/uboone/scratch/users/USERNAME/&name;/pndr</outdir>
     <logdir>/pnfs/uboone/scratch/users/USERNAME/&name;/pndr</logdir>
     <workdir>/pnfs/uboone/scratch/users/USERNAME/work/&name;/pndr</workdir>
+    <lines>request_memory=4096</lines>
     <?PNDREVENTS?> 
     <?PNDRJOBS?> 
     <datatier>detector-simulated</datatier>

@@ -83,6 +83,7 @@ sed -i 's|PROJECT|'"${project}"'|g' $prod_chain
 sed -i 's|USECOSMICS|'"${use_cosmics}"'|g' $prod_chain
 sed -i 's|NUANCE|'"${nuance}"'|g' $prod_chain
 sed -i 's|USERNAME|'"${USER_NAME}"'|g' $prod_chain
+sed -i 's|WORKINGDIR|'"${WORKING_DIR}"'|g' $prod_chain
 
 # Here we copy over the FCL files in case the use wants to modify them for a single production
 

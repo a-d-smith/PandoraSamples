@@ -33,7 +33,7 @@ Creates a new directories for your project under:
 source helpers/add_production <existing project name> <nuance code> <cosmic / bnb >
 ```
 
-1. existing project name - the name of your project (produced using `new_project.sh`
+1. existing project name - the name of your project (produced using `new_project.sh`)
 2. nuance code           - choose to filter on nuance codes `1001` `1003` `1004` or use keyword `all` to not filter at all
 3. cosmic / bnb          - choose `cosmic` for a BNB + cosmic production, or `bnb` for pure BNB
 

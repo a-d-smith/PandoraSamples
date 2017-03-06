@@ -13,53 +13,46 @@ fi
 # --------------------------------------------------------------------------------------------------------
 # Check the correct number of arguments have been passed
 # --------------------------------------------------------------------------------------------------------
-if [ $# -ne 1 ]; then
+if [ $# -ne 3 ]; then
   echo "Error: Please pass the following arguments"
-  echo "       1. A name for your new project"
+  echo "       1. An XML file"
+  echo "       2. Stage (GEN, FILTER, G4, DETSIM, PNDR)"
+  echo "       3. Number of events"
   return 1
 fi
 
 
 # --------------------------------------------------------------------------------------------------------
-# Check that the project doesn't already exist
+# Check that the XML file exists
 # --------------------------------------------------------------------------------------------------------
-if [ ! -d $WORKING_DIR/projects ]; then
-  mkdir $WORKING_DIR/projects
-fi 
-existing_projects=`find $WORKING_DIR/projects -mindepth 1 -maxdepth 1 -type d`
-project_exists=false
-for project in $existing_projects;
-do
-  if [ `basename $project` == $1 ]; then
-    project_exists=true
+file=$1
+if [ ! -f $file ]; then
+  echo "Error: No file exists with that name!"
+  return 1
+fi
+
+# --------------------------------------------------------------------------------------------------------
+# Check that a valid stage has been given
+# --------------------------------------------------------------------------------------------------------
+stage=$2
+if [[ $stage != "GEN" && $stage != "FILTER" && $stage != "G4" && $stage != "DETSIM" && $stage != "PNDR" ]]; then
+  echo "Error: Please choose one of the following for your stage"
+  echo "       GEN, FILTER, G4, DETSIM, PNDR"
+  return 1
+fi
+
+
+# --------------------------------------------------------------------------------------------------------
+# Now find any lines that contain <?${stage}EVENTS?>
+# --------------------------------------------------------------------------------------------------------
+rm -rf ${file}_modified
+touch ${file}_modified
+search="<?${stage}EVENTS?>"
+while read line; do
+  if [[ $line == *$search* ]]; then
+    echo "<numevents>${3}</numevents> ${search}" >> ${file}_modified
+  else
+    echo $line >> ${file}_modified
   fi
-done
-
-if [ $project_exists == true ]; then
-  echo "Error: A project with that name already exists. Please choose another name"
-  echo "       You currently have the following projects"
-  for project in $existing_projects;
-  do
-    echo "         "`basename $project`
-  done
-  return 0
-fi
-
-project=$1
-
-# --------------------------------------------------------------------------------------------------------
-# Check that there isn't already a directory with this project name under scratch
-# --------------------------------------------------------------------------------------------------------
-if [[ -d /pnfs/uboone/scratch/users/$USER_NAME/$project || -d /pnfs/uboone/scratch/users/$USER_NAME/work/$project ]]; then
-  echo "Error: A directory with that name already exists in scratch. Please remove it or choose another name"
-  echo "       see    /pnfs/uboone/scratch/users/$USER_NAME/$project"
-  echo "       and/or /pnfs/uboone/scratch/users/$USER_NAME/work/$project"
-  return 0
-fi
-
-# --------------------------------------------------------------------------------------------------------
-# Make a new directory for the project
-# --------------------------------------------------------------------------------------------------------
-mkdir -p /pnfs/uboone/scratch/users/$USER_NAME/$project
-mkdir -p /pnfs/uboone/scratch/users/$USER_NAME/work/$project
-mkdir -p $WORKING_DIR/projects/$project
+done < $file
+mv ${file}_modified ${file}

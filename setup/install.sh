@@ -58,6 +58,12 @@ mrbsetenv
 mrb i 
 mrbslp
 
+# --------------------------------------------------------------------------------------------------------
+# Make the tarball
+# --------------------------------------------------------------------------------------------------------
+cd $WORKING_DIR/generic
+tar -C $MRB_INSTALL -czf local.tar .
+
 cd $WORKING_DIR
 export PANDORA_SAMPLES_IS_INSTALLED=0
 
